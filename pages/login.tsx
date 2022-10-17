@@ -1,36 +1,10 @@
 import React, {useState, useEffect, FormEvent} from 'react'
-import { Typography, Container, CssBaseline,Box,TextField, FormControlLabel, Checkbox, Button, Snackbar, Stack } from '@mui/material';
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import { Typography, Container, CssBaseline,Box, TextField, FormControlLabel, Checkbox, Button } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Link from 'next/link';
-
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-  props,
-  ref,
-) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
-
-type CopyProps = {
-  site: string;
-    sx?:object;
-}
-
-function Copyright(props:CopyProps){
-    return (
-      <Typography>
-        {'Copyright © '}
-        <Link color="inherit" href="https://www.avanade.com.br/">
-          {props.site}
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    )
-}
+import Copyright from '../components/utils/Copyright';
+import SnackBar from '../components/utils/SnackBar';
 
 const theme = createTheme();
-
 
 export default function LoginPage() {
 
@@ -54,10 +28,6 @@ export default function LoginPage() {
     }
   }, [password]);
 
-  const handleClose = () => {
-    setOpen(false);
-  }
-
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -73,11 +43,6 @@ export default function LoginPage() {
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-          Usuário autenticado com sucesso!
-          </Alert>
-        </Snackbar>
           <Box sx={{mt:8, display: 'flex',flexDirection: 'column', alignItems: 'center'}}>
             <Typography component="h1" variant="h5">
               Login
@@ -97,6 +62,8 @@ export default function LoginPage() {
             </Box>
           </Box>
         <Copyright site="www.avanade.com.br" sx={{mt:8, mb: 4}} />
+
+        {open && <SnackBar open={open} hide={6} message="Usuário autenticado com sucesso." />}
       </Container>
     </ThemeProvider>
   )
