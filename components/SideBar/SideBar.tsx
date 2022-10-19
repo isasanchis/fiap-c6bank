@@ -8,7 +8,9 @@ const SideBarContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 360px;
-  justify-content: space-evenly;
+  height: 100%;
+  position: fixed;
+  justify-content: space-around;
   background-color: #242424;
 `
 
