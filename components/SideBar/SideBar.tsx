@@ -10,6 +10,8 @@ const SideBarContainer = styled.div`
   width: 360px;
   height: 100%;
   position: fixed;
+  top: 0;
+  left: 0;
   justify-content: space-around;
   background-color: #242424;
 `

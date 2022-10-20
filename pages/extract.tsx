@@ -4,9 +4,9 @@ import SideBar from "../components/SideBar";
 import ExtractContent from "../components/ExtractContent";
 
 const ExtractContainer = styled.div`
-  display: flex;
-  width: 100%;
-  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 360px;
 `
 
 export default function ExtractPage() {

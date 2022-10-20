@@ -6,7 +6,7 @@ import styled from '@emotion/styled'
 import db from '../utils/db'
 
 const ExtractContentContainer = styled.div`
-  margin-left:360px;
+
 `
 
 export default function ExtractContent() {
