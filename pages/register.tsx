@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from '../components/utils/Copyright';
 import SnackBar from '../components/utils/SnackBar';
 
+
 const theme = createTheme();
 
 export default function Register() {
@@ -13,6 +14,7 @@ export default function Register() {
   const [email, setEmail] = useState<string | undefined | null | FormDataEntryValue>("");
   const [password, setPassword] = useState<string | undefined | null | FormDataEntryValue>("");
   const [open, setOpen] = useState<boolean>(false);
+
 
   useEffect(() => {
     if(password && password.length < 6) {
@@ -62,7 +64,8 @@ export default function Register() {
               {error && <Typography color="error">{errorMessage}</Typography>}
             </Box>
           </Box>
-        <Copyright site="www.avanade.com.br" sx={{mt:8, mb: 4}} />
+        <Copyright site="Avanade" href="https://www.avanade.com.br" sx={{mt:8, mb: 4}} />
+        <Copyright site="Github" href="https://www.github.com" sx={{mt:8, mb: 4}} />
 
         {open && <SnackBar open={open} hide={6} message="Usuário registrado com sucesso." />}
       </Container>

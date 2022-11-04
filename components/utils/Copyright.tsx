@@ -3,19 +3,20 @@ import Link from 'next/link';
 
 type CopyProps = {
     site: string;
+    href: string;
     sx?:object;
 }
   
-function Copyright(props:CopyProps){
+function Copyright(props:CopyProps) {
     return (
-        <Typography>
-        {'Copyright © '}
-        <Link color="inherit" href="https://www.avanade.com.br/">
+        <div>
+        <p>Copyright ©</p>
+        <Link color="inherit" href={props.href}>
             {props.site}
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
-        </Typography>
+        </div>
     )
 }
 

@@ -3,6 +3,7 @@ import { Typography, Container, CssBaseline,Box, TextField, FormControlLabel, Ch
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from '../components/utils/Copyright';
 import SnackBar from '../components/utils/SnackBar';
+import axios from 'axios';
 
 const theme = createTheme();
 
@@ -21,10 +22,21 @@ export default function LoginPage() {
     } else if(password) {
       setError(false);
       setErrorMessage('');
-      setOpen(true);
+      //setOpen(true);
 
       // enviar form p o server
       // snackbar
+      axios.post('http://localhost:3000/auth/login', {
+        login: email,
+        password
+      }).then((response) => {
+        console.log(response);
+        if(response.status == 200) {
+          setOpen(true);
+        }
+      }).catch((error) => {
+        console.log(error);
+      })
     }
   }, [password]);
 
@@ -61,7 +73,7 @@ export default function LoginPage() {
               {error && <Typography color="error">{errorMessage}</Typography>}
             </Box>
           </Box>
-        <Copyright site="www.avanade.com.br" sx={{mt:8, mb: 4}} />
+        <Copyright site="www.avanade.com.br" href="https://www.avanade.com" sx={{mt:8, mb: 4}} />
 
         {open && <SnackBar open={open} hide={6} message="Usuário autenticado com sucesso." />}
       </Container>
